@@ -1,6 +1,6 @@
-# Employee Management System
+# WorkForceX– Employee Management System
 
-A secure and scalable **Employee Management System** built using **Java, Spring Boot, Spring Security, JWT, JPA/Hibernate, and MySQL**. The application provides REST APIs for managing employees with authentication, role-based authorization, validation, pagination, sorting, searching, and centralized exception handling.
+A secure and scalable **WorkForceX– Employee Management System** built using **Java, Spring Boot, Spring Security, JWT, JPA/Hibernate, and MySQL**. The application provides REST APIs for managing employees with authentication, role-based authorization, validation, pagination, sorting, searching, and centralized exception handling.
 
 ## 🚀 Features
 
