@@ -370,9 +370,6 @@ This section showcases the key features and functionality of WorkForceX.
 ### 5. JWT Authentication
 ![JWT Authentication](employee-management/screenshots/jwt-authentication.png)
 
-![MySQL Database](screenshots/mysql-database.png)
-
-### 5. JWT Authentication
 Demonstrates JWT-based authentication and secured API access.
 
 ![JWT Authentication](screenshots/jwt-authentication.png)
