@@ -60,4 +60,14 @@ public class GlobalExceptionHandler {
                 "message", exception.getMessage()
         );
     }
+
+    @ExceptionHandler(DuplicateUsernameException.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public Map<String, String> handleDuplicateUsername(
+            DuplicateUsernameException exception) {
+
+        return Map.of(
+                "message", exception.getMessage()
+        );
+    }
 }

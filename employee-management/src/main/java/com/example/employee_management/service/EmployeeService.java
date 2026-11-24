@@ -5,6 +5,7 @@ import com.example.employee_management.dto.EmployeeRequestDTO;
 import com.example.employee_management.entity.Employee;
 import com.example.employee_management.exception.DuplicateEmailException;
 import com.example.employee_management.exception.EmployeeNotFoundException;
+import com.example.employee_management.mapper.EmployeeMapper;
 import com.example.employee_management.repository.EmployeeRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,9 +19,13 @@ import java.util.List;
 public class EmployeeService {
 
     private final EmployeeRepository employeeRepository;
+    private final EmployeeMapper employeeMapper;
 
-    public EmployeeService(EmployeeRepository employeeRepository) {
+    public EmployeeService(
+            EmployeeRepository employeeRepository,
+            EmployeeMapper employeeMapper) {
         this.employeeRepository = employeeRepository;
+        this.employeeMapper = employeeMapper;
     }
 
     // create employee
@@ -33,17 +38,12 @@ public class EmployeeService {
             );
         }
 
-        Employee employee = new Employee();
 
-        employee.setName(request.getName());
-        employee.setEmail(request.getEmail());
-        employee.setSalary(request.getSalary());
-        employee.setDesignation(request.getDesignation());
-        employee.setDepartment(request.getDepartment());
+        Employee employee = employeeMapper.toEntity(request);
 
         Employee savedEmployee = employeeRepository.save(employee);
 
-        return convertToDTO(savedEmployee);
+        return employeeMapper.toDTO(savedEmployee);
     }
 
     // Get employee by id
@@ -55,7 +55,7 @@ public class EmployeeService {
                         )
                 );
 
-        return convertToDTO(employee);
+        return employeeMapper.toDTO(employee);
     }
 
     // update by id
@@ -83,7 +83,7 @@ public class EmployeeService {
 
         Employee updatedEmployee = employeeRepository.save(employee);
 
-        return convertToDTO(updatedEmployee);
+        return employeeMapper.toDTO(updatedEmployee);
     }
 
     // delete employee by id
@@ -101,7 +101,7 @@ public class EmployeeService {
     public List<EmployeeDTO> searchEmployeesByName(String name) {
         return employeeRepository.findByNameContainingIgnoreCase(name)
                 .stream()
-                .map(this::convertToDTO)
+                .map(employeeMapper::toDTO)
                 .toList();
     }
 
@@ -121,7 +121,7 @@ public class EmployeeService {
         Pageable pageable = PageRequest.of(page, size, sort);
 
         return employeeRepository.findAll(pageable)
-                .map(this::convertToDTO);
+                .map(employeeMapper::toDTO);
     }
 
     // get employee by department
@@ -130,7 +130,7 @@ public class EmployeeService {
         return employeeRepository
                 .findByDepartmentIgnoreCase(department)
                 .stream()
-                .map(this::convertToDTO)
+                .map(employeeMapper::toDTO)
                 .toList();
     }
 
@@ -153,23 +153,9 @@ public class EmployeeService {
 
         return employeeRepository
                 .findByDepartmentIgnoreCase(department, pageable)
-                .map(this::convertToDTO);
+                .map(employeeMapper::toDTO);
     }
 
-
-    // convertToDTO
-    private EmployeeDTO convertToDTO(Employee employee) {
-        EmployeeDTO dto = new EmployeeDTO();
-
-        dto.setId(employee.getId());
-        dto.setName(employee.getName());
-        dto.setEmail(employee.getEmail());
-        dto.setSalary(employee.getSalary());
-        dto.setDesignation(employee.getDesignation());
-        dto.setDepartment(employee.getDepartment());
-
-        return dto;
-    }
 
     private void validateSortField(String sortBy) {
 
@@ -184,7 +170,7 @@ public class EmployeeService {
 
         if(!allowedFields.contains(sortBy)) {
             throw new IllegalArgumentException(
-                    "Invalid sort fields: " + sortBy
+                    "Invalid sort field: " + sortBy
             );
         }
     }
@@ -212,6 +198,54 @@ public class EmployeeService {
                     "Direction must be either 'asc' or 'desc'"
             );
         }
+    }
+
+    public long countEmployeesByDepartment(String department) {
+        return employeeRepository.countByDepartmentIgnoreCase(department);
+    }
+
+    public Page<EmployeeDTO> searchEmployeesByName(
+            String name,
+            int page,
+            int size,
+            String sortBy,
+            String direction) {
+
+        validatePagination(page, size, direction);
+        validateSortField(sortBy);
+
+        Sort sort= direction.equalsIgnoreCase("desc")
+                ? Sort.by(sortBy).descending()
+                : Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return employeeRepository
+                .findByNameContainingIgnoreCase(name, pageable)
+                .map(employeeMapper::toDTO);
+    }
+
+    public Page<EmployeeDTO> searchEmployees(
+            String name,
+            String department,
+            int page,
+            int size,
+            String sortBy,
+            String direction) {
+
+        validatePagination(page, size, direction);
+        validateSortField(sortBy);
+
+        Sort sort = direction.equalsIgnoreCase("desc")
+                ? Sort.by(sortBy).descending()
+                :Sort.by(sortBy).ascending();
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+
+        return employeeRepository
+                .findByNameContainingIgnoreCaseAndDepartmentIgnoreCase(
+                        name, department, pageable)
+                .map(employeeMapper::toDTO);
     }
 
 

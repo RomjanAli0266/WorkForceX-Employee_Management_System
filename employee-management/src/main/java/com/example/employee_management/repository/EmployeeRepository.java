@@ -17,4 +17,16 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     List<Employee> findByDepartmentIgnoreCase(String department);
 
     Page<Employee> findByDepartmentIgnoreCase(String department, Pageable pageable);
+
+    long countByDepartmentIgnoreCase(String department);
+
+    Page<Employee> findByNameContainingIgnoreCase(
+            String name,
+            Pageable pageable
+    );
+
+    Page<Employee> findByNameContainingIgnoreCaseAndDepartmentIgnoreCase(
+            String name,
+            String department,
+            Pageable pageable);
 }

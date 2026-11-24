@@ -1,10 +1,7 @@
 package com.example.employee_management.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 
 
 @Entity
@@ -20,10 +17,11 @@ public class Employee {
 
     @NotBlank(message = "Email is required")
     @Email(message = "Email must be valid")
+    @Column(unique = true, nullable = false)
     private String email;
 
     @NotNull(message = "Salary is required")
-    @Min(value = 1, message = "Salary must be greater than 0")
+    @DecimalMin(value = "0.01", message = "Salary must be greater than 0")
     private Double salary;
 
     @NotBlank(message = "Designation is required")
