@@ -356,22 +356,19 @@ GitHub: [@RomjanAli0266](https://github.com/RomjanAli0266)
 This section showcases the key features and functionality of WorkForceX.
 
 ### 1. Project Structure
-Shows the overall Spring Boot project organization and package structure.
-
-![Project Structure](screenshots/project-structure.png)
+![Project Structure](employee-management/screenshots/project-structure.png)
 
 ### 2. Swagger UI – API Documentation
-Interactive API documentation for exploring and testing REST endpoints.
-
-![Swagger UI](screenshots/swagger-ui.png)
+![Swagger UI](employee-management/screenshots/swagger-ui.png)
 
 ### 3. Postman – API Testing
-Demonstrates API requests and responses using Postman.
-
-![Postman API Testing](screenshots/postman-api.png)
+![Postman API Testing](employee-management/screenshots/postman-api.png)
 
 ### 4. MySQL Database
-Shows the database and employee records stored in MySQL.
+![MySQL Database](employee-management/screenshots/mysql-database.png)
+
+### 5. JWT Authentication
+![JWT Authentication](employee-management/screenshots/jwt-authentication.png)
 
 ![MySQL Database](screenshots/mysql-database.png)
 
