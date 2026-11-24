@@ -1,78 +1,142 @@
-# WorkForceX– Employee Management System
+# 🚀 WorkForceX – Employee Management System
 
-A secure and scalable **WorkForceX– Employee Management System** built using **Java, Spring Boot, Spring Security, JWT, JPA/Hibernate, and MySQL**. The application provides REST APIs for managing employees with authentication, role-based authorization, validation, pagination, sorting, searching, and centralized exception handling.
+<p align="center">
+  <strong>A Secure & Scalable Employee Management REST API</strong>
+  <br>
+  Built with Java 21, Spring Boot, Spring Security, JWT and MySQL.
+</p>
 
-## 🚀 Features
+<p align="center">
+  <img src="https://img.shields.io/badge/Java-21-orange?logo=openjdk" alt="Java 21">
+  <img src="https://img.shields.io/badge/Spring_Boot-Backend-brightgreen?logo=springboot" alt="Spring Boot">
+  <img src="https://img.shields.io/badge/Spring_Security-JWT-green?logo=springsecurity" alt="Spring Security">
+  <img src="https://img.shields.io/badge/MySQL-Database-blue?logo=mysql" alt="MySQL">
+  <img src="https://img.shields.io/badge/Maven-Build-red?logo=apachemaven" alt="Maven">
+</p>
 
-* 🔐 JWT-based authentication and authorization
-* 👤 User registration and login
-* 🛡️ Role-based access control (`ADMIN`, `USER`)
-* 👨‍💼 Employee CRUD operations
-* 🔎 Employee search and filtering
-* 📄 Pagination
-* ↕️ Sorting
-* ✅ Request validation
-* ⚠️ Global exception handling
-* 📚 Swagger/OpenAPI documentation
-* 🗄️ MySQL database integration
-* 🔒 Protected REST APIs
+<p align="center">
+  <a href="https://github.com/RomjanAli0266/WorkForceX-Employee_Management_System">
+    <strong>View Repository</strong>
+  </a>
+</p>
 
-## 🛠️ Technologies Used
+---
 
-| Technology        | Purpose                        |
-| ----------------- | ------------------------------ |
-| Java 21           | Programming Language           |
-| Spring Boot       | Backend Framework              |
-| Spring Security   | Authentication & Authorization |
-| JWT               | Token-based Authentication     |
-| Spring Data JPA   | Database Access                |
-| Hibernate         | ORM                            |
-| MySQL             | Database                       |
-| Maven             | Dependency Management          |
-| Swagger / OpenAPI | API Documentation              |
-| Postman           | API Testing                    |
-| Git & GitHub      | Version Control                |
+## 📌 About the Project
+
+**WorkForceX** is a secure and scalable Employee Management System developed using Java and Spring Boot.
+
+It provides REST APIs for managing employee information with JWT-based authentication, role-based authorization, CRUD operations, searching, pagination, sorting, request validation and centralized exception handling.
+
+The application follows a layered architecture and uses Spring Data JPA and Hibernate for database operations.
+
+## ✨ Key Features
+
+| Feature | Description |
+|---|---|
+| 🔐 JWT Authentication | Secure user registration and login |
+| 🛡️ Role-Based Authorization | ADMIN and USER roles |
+| 👨‍💼 Employee Management | Create, read, update and delete employees |
+| 🔎 Search & Filtering | Search employees using supported fields |
+| 📄 Pagination | Retrieve employee records page by page |
+| ↕️ Sorting | Sort employee records |
+| ✅ Request Validation | Validate incoming API requests |
+| ⚠️ Global Exception Handling | Centralized error handling |
+| 📚 Swagger / OpenAPI | API documentation |
+| 🗄️ MySQL Integration | Persistent relational database |
+
+## 🛠️ Technology Stack
+
+| Technology | Purpose |
+|---|---|
+| Java 21 | Programming Language |
+| Spring Boot | Backend Framework |
+| Spring Security | Authentication and Authorization |
+| JWT | Token-Based Authentication |
+| Spring Data JPA | Database Access |
+| Hibernate | Object-Relational Mapping |
+| MySQL | Relational Database |
+| Maven | Dependency Management |
+| Swagger / OpenAPI | API Documentation |
+| Postman | API Testing |
+| Git & GitHub | Version Control |
+
+## 🏗️ System Architecture
+
+```text
+             Client / Postman
+                    |
+                    v
+             Spring Security
+                    |
+                    v
+                JWT Filter
+                    |
+                    v
+             Controller Layer
+                    |
+                    v
+              Service Layer
+                    |
+                    v
+            Repository Layer
+                    |
+                    v
+               MySQL DB
+```
 
 ## 📂 Project Structure
 
 ```text
-employee-management
+employee-management/
 │
-├── src
-│   └── main
-│       ├── java
-│       │   └── com.example.employee_management
-│       │       ├── controller
-│       │       ├── service
-│       │       ├── repository
-│       │       ├── entity
-│       │       ├── dto
-│       │       ├── mapper
-│       │       ├── security
-│       │       └── exception
+├── src/
+│   └── main/
+│       ├── java/
+│       │   └── com/example/employee_management/
+│       │       ├── controller/
+│       │       ├── service/
+│       │       ├── repository/
+│       │       ├── entity/
+│       │       ├── dto/
+│       │       ├── mapper/
+│       │       ├── security/
+│       │       └── exception/
 │       │
-│       └── resources
+│       └── resources/
 │           └── application.properties
 │
 ├── pom.xml
 └── README.md
 ```
 
-## 🗄️ Database Configuration
+## ⚙️ Installation & Setup
 
-Create a MySQL database:
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/RomjanAli0266/WorkForceX-Employee_Management_System.git
+```
+
+### 2. Open the Project
+
+Open the cloned project in IntelliJ IDEA, Eclipse or VS Code.
+
+### 3. Create MySQL Database
+
+Execute the following SQL query:
 
 ```sql
 CREATE DATABASE employeedb;
 ```
 
-Configure your database connection in:
+### 4. Configure Database Credentials
 
-```text
-src/main/resources/application.properties
-```
+Open:
 
-Example:
+`src/main/resources/application.properties`
+
+Configure your MySQL credentials:
 
 ```properties
 spring.datasource.url=jdbc:mysql://localhost:3306/employeedb
@@ -83,33 +147,9 @@ spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 ```
 
-> Replace `YOUR_USERNAME` and `YOUR_PASSWORD` with your local MySQL credentials.
+**Important:** Replace the placeholder credentials with your local MySQL credentials. Never upload real passwords or JWT secrets to GitHub.
 
-## ▶️ How to Run
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/RomjanAli0266/employee-management.git
-```
-
-### 2. Open the project
-
-Open the project in IntelliJ IDEA, Eclipse, or VS Code.
-
-### 3. Configure MySQL
-
-Make sure MySQL is running and create the `employeedb` database.
-
-### 4. Update database credentials
-
-Edit:
-
-```text
-src/main/resources/application.properties
-```
-
-### 5. Run the application
+### 5. Run the Application
 
 Using Maven:
 
@@ -119,23 +159,25 @@ mvn spring-boot:run
 
 Or run the main Spring Boot application class from your IDE.
 
-The application will start at:
+**Backend URL:**
 
 ```text
 http://localhost:8080
 ```
 
-## 🔐 Authentication
+## 🔐 Authentication APIs
 
-The application uses **JWT authentication**.
+The application uses JWT authentication to secure protected REST endpoints.
 
-### Register
+### Register User
+
+**Endpoint:**
 
 ```http
 POST /auth/register
 ```
 
-Example request:
+**Example Request:**
 
 ```json
 {
@@ -145,13 +187,15 @@ Example request:
 }
 ```
 
-### Login
+### Login User
+
+**Endpoint:**
 
 ```http
 POST /auth/login
 ```
 
-Example:
+**Example Request:**
 
 ```json
 {
@@ -160,56 +204,27 @@ Example:
 }
 ```
 
-After successful login, the server returns a JWT token.
+After successful authentication, the server returns a JWT token.
 
-Use the token in protected requests:
+Use the token in protected API requests:
 
 ```http
 Authorization: Bearer <JWT_TOKEN>
 ```
 
-## 👨‍💼 Employee APIs
+## 👨‍💼 Employee REST APIs
 
-### Create Employee
-
-```http
-POST /employees
-```
-
-### Get All Employees
-
-```http
-GET /employees
-```
-
-### Get Employee by ID
-
-```http
-GET /employees/{id}
-```
-
-### Update Employee
-
-```http
-PUT /employees/{id}
-```
-
-### Delete Employee
-
-```http
-DELETE /employees/{id}
-```
-
-### Search Employees
-
-The application supports employee searching/filtering based on available fields such as:
-
-* Name
-* Department
+| HTTP Method | Endpoint | Description |
+|---|---|---|
+| POST | `/employees` | Create a new employee |
+| GET | `/employees` | Retrieve all employees |
+| GET | `/employees/{id}` | Retrieve employee by ID |
+| PUT | `/employees/{id}` | Update employee details |
+| DELETE | `/employees/{id}` | Delete an employee |
 
 ### Pagination & Sorting
 
-Example:
+Example request:
 
 ```http
 GET /employees?page=0&size=5&sortBy=id&direction=asc
@@ -217,16 +232,14 @@ GET /employees?page=0&size=5&sortBy=id&direction=asc
 
 Supported sorting fields include:
 
-```text
-id
-name
-email
-salary
-designation
-department
-```
+- id
+- name
+- email
+- salary
+- designation
+- department
 
-## 🧾 Employee Example
+### Employee JSON Example
 
 ```json
 {
@@ -238,33 +251,26 @@ department
 }
 ```
 
-## 🛡️ Authorization
+## 🛡️ Security & Authorization
 
-Different operations are protected using role-based authorization.
+The application implements role-based access control using Spring Security and JWT.
 
-| Role            | Access                               |
-| --------------- | ------------------------------------ |
-| ADMIN           | Full employee management access      |
-| USER            | Authorized user-level operations     |
+| Role | Permissions |
+|---|---|
+| ADMIN | Full employee management access |
+| USER | Authorized user-level operations |
 | Unauthenticated | Public authentication endpoints only |
 
-Unauthorized requests return:
+**HTTP Security Responses:**
 
-```text
-401 Unauthorized
-```
+- `401 Unauthorized` – Authentication is missing or invalid.
+- `403 Forbidden` – Authenticated user does not have sufficient permissions.
 
-Requests from authenticated users without sufficient permissions return:
+## ✅ Request Validation
 
-```text
-403 Forbidden
-```
+Incoming requests are validated using Jakarta Bean Validation.
 
-## ✅ Validation
-
-Employee requests are validated using Jakarta Bean Validation.
-
-Examples:
+Common validation annotations include:
 
 ```java
 @NotBlank
@@ -272,88 +278,75 @@ Examples:
 @Positive
 ```
 
-Invalid requests are handled centrally using the application's global exception handler.
+Invalid requests are handled through centralized global exception handling.
 
 ## 📚 API Documentation
 
-Swagger/OpenAPI is integrated into the project for API documentation and testing.
+Swagger / OpenAPI is integrated for API documentation and testing.
 
-After starting the application, open the Swagger UI URL configured by the project.
+Start the application and access the Swagger UI using the URL configured in the project.
 
-## 🧪 Testing
+## 🧪 API Testing
 
-The REST APIs were tested using **Postman**.
+REST APIs are tested using **Postman**.
 
-Testing includes:
+Testing scenarios include:
 
-* Registration
-* Login
-* JWT authentication
-* Employee creation
-* Employee retrieval
-* Employee update
-* Employee deletion
-* Search
-* Pagination
-* Sorting
-* Validation
-* Unauthorized requests
-* Role-based authorization
+- User registration and login
+- JWT authentication
+- Employee creation
+- Employee retrieval
+- Employee updates
+- Employee deletion
+- Search and filtering
+- Pagination and sorting
+- Request validation
+- Unauthorized requests
+- Role-based authorization
 
-## 🌐 Frontend — EmployeeHub
+## 💻 Frontend Integration – EmployeeHub
 
-A professional frontend named **EmployeeHub** is being developed using:
+A React + TypeScript frontend named **EmployeeHub** is being developed to interact with the WorkForceX backend.
 
-* React
-* TypeScript
-* Vite
-* TSX
+**Frontend Technologies:**
 
-The frontend is designed to consume the Spring Boot REST APIs.
+- React
+- TypeScript
+- Vite
+- TSX
 
-Planned/implemented screens include:
+**Development URLs:**
 
-* Login
-* Dashboard
-* Employee Directory
-* Add Employee
-* Edit Employee
-* Employee Details
-* Settings
+| Application | URL |
+|---|---|
+| Frontend | `http://localhost:5173` |
+| Backend | `http://localhost:8080` |
 
-Frontend development server:
+Frontend screens and integrations will be documented as development progresses.
 
-```text
-http://localhost:5173
-```
+## 🔮 Future Enhancements
 
-Backend:
+- Employee profile pictures
+- Advanced dashboard analytics
+- Salary statistics
+- Department-wise employee reports
+- Excel / PDF employee data export
+- Email notifications
+- Refresh token implementation
+- Docker containerization
+- CI/CD with GitHub Actions
+- Cloud deployment
 
-```text
-http://localhost:8080
-```
-
-## 🔮 Future Improvements
-
-* Employee profile pictures
-* Advanced dashboard analytics
-* Salary statistics
-* Department-wise employee reports
-* Export employee data to Excel/PDF
-* Email notifications
-* Refresh token implementation
-* Docker deployment
-* Cloud deployment
-* Production database configuration
-
-## 👨‍💻 Author
+## 👨‍💻 Developer
 
 **Romjan Ali**
 
-B.Tech Computer Science & Engineering
+B.Tech – Computer Science & Engineering
 
-GitHub: `RomjanAli0266`
+GitHub: [@RomjanAli0266](https://github.com/RomjanAli0266)
 
-## 📄 License
+---
 
-This project is created for educational, portfolio, and learning purposes.
+<p align="center">
+  <strong>⭐ If you find WorkForceX useful, consider giving this repository a star!</strong>
+</p>
