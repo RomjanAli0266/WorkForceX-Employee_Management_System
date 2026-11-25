@@ -70,4 +70,10 @@ public class GlobalExceptionHandler {
                 "message", exception.getMessage()
         );
     }
+
+    public Map<String, String> handleInvalidCredentials(
+            InvalidCredentialsException ex
+    ) {
+        return Map.of("message", ex.getMessage());
+    }
 }

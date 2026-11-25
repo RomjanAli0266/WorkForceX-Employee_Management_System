@@ -7,6 +7,7 @@ import com.example.employee_management.dto.UserDTO;
 import com.example.employee_management.dto.UserRequestDTO;
 import com.example.employee_management.entity.UserEntity;
 import com.example.employee_management.exception.DuplicateUsernameException;
+import com.example.employee_management.exception.InvalidCredentialsException;
 import com.example.employee_management.mapper.UserMapper;
 import com.example.employee_management.repository.UserRepository;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -63,14 +64,16 @@ public class AuthService {
 
         UserEntity user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow(() ->
-                        new RuntimeException("Invalid username or password")
+                        new InvalidCredentialsException(
+                                "Invalid username or password")
                 );
 
         if (!passwordEncoder.matches(
                 request.getPassword(),
                 user.getPassword())) {
 
-            throw new RuntimeException("Invalid username or password");
+            throw new InvalidCredentialsException(
+                    "Invalid username or password");
         }
 
         String token = jwtService.generateToken(
